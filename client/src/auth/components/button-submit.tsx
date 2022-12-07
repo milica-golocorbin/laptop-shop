@@ -3,7 +3,7 @@ const ButtonSubmit = () => {
     <button
       type="submit"
       className="uppercase font-semibold text-xs bg-slate-900 text-white py-2 rounded-md shadow-md 
-      shadow-teal-500 mx-auto w-1/2 s:w-1/3 sm:w-1/4"
+      shadow-sky-500 mx-auto w-1/2 s:w-1/3 sm:w-1/4"
     >
       submit
     </button>

@@ -8,13 +8,13 @@ body::-webkit-scrollbar {
 }
 html {
   scrollbar-width: thin;
-  scrollbar-color: #14b8a6;
+  scrollbar-color: #0ea5e9;
 }
 body::-webkit-scrollbar-track {
   background: #0f172a;
 }
 body::-webkit-scrollbar-thumb {
-  background-color: #14b8a6;
+  background-color: #0ea5e9;
   border-radius: 5px;
   border: 1px solid;
 }

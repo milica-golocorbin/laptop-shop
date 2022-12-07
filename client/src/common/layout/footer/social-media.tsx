@@ -14,7 +14,7 @@ const SocialMedia = () => {
         href="https://www.instagram.com/milicagolocorbin"
         rel="noopener noreferrer"
       >
-        <RiInstagramFill className="text-2xl hover:text-teal-500 hover:scale-105" />
+        <RiInstagramFill className="text-2xl hover:text-sky-500 hover:scale-105" />
       </a>
 
       <a
@@ -23,7 +23,7 @@ const SocialMedia = () => {
         href="https://github.com/milica-golocorbin"
         rel="noopener noreferrer"
       >
-        <RiGithubFill className="text-2xl hover:text-teal-500 hover:scale-105" />
+        <RiGithubFill className="text-2xl hover:text-sky-500 hover:scale-105" />
       </a>
 
       <a
@@ -32,7 +32,7 @@ const SocialMedia = () => {
         href="#"
         rel="noopener noreferrer"
       >
-        <RiLinkedinBoxFill className="text-2xl hover:text-teal-500 hover:scale-105" />
+        <RiLinkedinBoxFill className="text-2xl hover:text-sky-500 hover:scale-105" />
       </a>
 
       <a
@@ -41,7 +41,7 @@ const SocialMedia = () => {
         href="https://www.youtube.com/channel/UCvUxkka6v725zFX-v2SJmtQ"
         rel="noopener noreferrer"
       >
-        <RiYoutubeFill className="text-2xl hover:text-teal-500 hover:scale-105" />
+        <RiYoutubeFill className="text-2xl hover:text-sky-500 hover:scale-105" />
       </a>
 
       <a
@@ -50,7 +50,7 @@ const SocialMedia = () => {
         href="https://twitter.com/micagolocorbin"
         rel="noopener noreferrer"
       >
-        <RiTwitterFill className="text-2xl hover:text-teal-500 hover:scale-105" />
+        <RiTwitterFill className="text-2xl hover:text-sky-500 hover:scale-105" />
       </a>
 
       <a
@@ -59,7 +59,7 @@ const SocialMedia = () => {
         href="https://dev.to/milicagolocorbin"
         rel="noopener noreferrer"
       >
-        <FaDev className="text-2xl hover:text-teal-500 hover:scale-105" />
+        <FaDev className="text-2xl hover:text-sky-500 hover:scale-105" />
       </a>
     </div>
   );
