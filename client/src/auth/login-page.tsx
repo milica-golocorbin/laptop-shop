@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Formik, Form } from "formik";
 import { LoginSchema } from "./yup-schema";
-import Layout from "../common/layout/layout";
-import FormWrapper from "./components/form-wrapper";
+import Main from "../common/layout/main/main";
+import FormSection from "./components/form-section";
 import MainTitle from "../common/titles/main-title";
-import FormControl from "../common/form/form-control";
+import FormControl from "./components/form-control";
 import ShowPassword from "./components/show-password";
 import PageNavigationLink from "./components/page-navigation-link";
 import ButtonSubmit from "./components/button-submit";
@@ -15,7 +15,7 @@ const LoginPage = () => {
   const initialValues = { email: "", password: "" };
 
   return (
-    <Layout>
+    <Main>
       <Formik
         initialValues={initialValues}
         validationSchema={LoginSchema}
@@ -25,7 +25,7 @@ const LoginPage = () => {
           resetForm({ values: { email: "", password: "" } });
         }}
       >
-        <FormWrapper>
+        <FormSection>
           <MainTitle>Login into your account</MainTitle>
           <Form className="flex flex-col gap-6">
             {/* EMAIL FIELD */}
@@ -60,9 +60,9 @@ const LoginPage = () => {
             />
             <ButtonSubmit />
           </Form>
-        </FormWrapper>
+        </FormSection>
       </Formik>
-    </Layout>
+    </Main>
   );
 };
 

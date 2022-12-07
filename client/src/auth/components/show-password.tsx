@@ -6,7 +6,7 @@ type Props = {
 const ShowPassword = ({ showPassword, onClickHandler }: Props) => {
   return (
     <p
-      className="text-[10px] uppercase font-bold cursor-pointer absolute top-9 right-2"
+      className="text-[9px] uppercase font-semibold cursor-pointer absolute top-9 right-2"
       onClick={onClickHandler}
     >
       {!showPassword ? "show" : "hide"}

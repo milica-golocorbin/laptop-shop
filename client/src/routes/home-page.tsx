@@ -1,11 +1,14 @@
-import { Button } from "@mui/material";
-import Layout from "../common/layout/layout";
+import Main from "../common/layout/main/main";
+import MainSection from "../common/layout/main/main-section";
+import MainTitle from "../common/titles/main-title";
 
 const HomePage = () => {
   return (
-    <Layout>
-      <h1>Home Page</h1>
-    </Layout>
+    <Main>
+      <MainSection>
+        <MainTitle>Home Page</MainTitle>
+      </MainSection>
+    </Main>
   );
 };
 
