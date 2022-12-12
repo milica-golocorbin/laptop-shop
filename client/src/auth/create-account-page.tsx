@@ -1,42 +1,55 @@
-import { useState } from "react";
+import { sendSignInLinkToEmail } from "firebase/auth";
+import { auth } from "./firebase/setup";
+import { toast } from "react-toastify";
 import { Formik, Form } from "formik";
-import { CreateAccountSchema } from "./yup-schema";
-import Main from "../common/layout/main/main";
+import { EmailVerifySchema } from "./validation/yup-schema";
+// COMPONENTS
+import Main from "../layout/main/main";
 import FormSection from "./components/form-section";
 import MainTitle from "../common/titles/main-title";
 import FormControl from "./components/form-control";
-import ShowPassword from "./components/show-password";
 import PageNavigationLink from "./components/page-navigation-link";
 import ButtonSubmit from "./components/button-submit";
+// END OF IMPORTS
 
 const CreateAccountPage = () => {
-  // local state
-  const [showPassword, setShowPassword] = useState(false);
-  const initialValues = { email: "", password: "", firstName: "" };
+  // formik
+  const initialValues = { email: "" };
+  // instructions to Firebase on how to construct the email link
+  const actionCodeSettings = {
+    url: `${import.meta.env.VITE_CREATE_ACCOUNT_REDIRECT_URL}`,
+    handleCodeInApp: true,
+  };
 
   return (
     <Main>
+      {/* Logic for form submission start */}
       <Formik
         initialValues={initialValues}
-        validationSchema={CreateAccountSchema}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
+        validationSchema={EmailVerifySchema}
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(false);
-          console.log(values);
-          resetForm({ values: { email: "", password: "", firstName: "" } });
+          try {
+            await sendSignInLinkToEmail(auth, values.email, actionCodeSettings);
+            toast.success(`Email sent to: ${values.email}`);
+            window.localStorage.setItem("emailForSignIn", values.email);
+          } catch (error: any) {
+            console.log(error);
+            toast.error(error.message);
+          }
+          resetForm({ values: { email: "" } });
         }}
       >
+        {/* Logic for form submission end */}
+
         <FormSection>
-          <MainTitle>Create your account</MainTitle>
+          <MainTitle>Create Account</MainTitle>
+          <p className="text-center mb-10">
+            Please enter your email address. And we'll send you a verification
+            email to finish your account creation process.
+          </p>
           <Form className="flex flex-col gap-6">
-            {/* NAME FIELD */}
-            <FormControl
-              label="Your name"
-              id="firstName"
-              name="firstName"
-              type="text"
-              placeholder="Enter name"
-            />
-            {/* EMAIL FIELD */}
+            {/* Email field start */}
             <FormControl
               label="Email Address"
               id="email"
@@ -44,22 +57,7 @@ const CreateAccountPage = () => {
               type="email"
               placeholder="Enter email"
             />
-            {/* PASSWORD FIELD */}
-            <div className="relative">
-              <FormControl
-                label="Password"
-                id="password"
-                name="password"
-                type={!showPassword ? "password" : "text"}
-                placeholder="Enter password"
-              />
-              <ShowPassword
-                showPassword={showPassword}
-                onClickHandler={() => {
-                  setShowPassword(!showPassword);
-                }}
-              />
-            </div>
+            {/* Email field end */}
             <PageNavigationLink
               title="Already have an account?"
               linkTo="/auth/login"

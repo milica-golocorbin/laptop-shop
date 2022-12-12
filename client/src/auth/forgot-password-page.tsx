@@ -1,46 +1,58 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useContext } from "react";
+import { UserContext, UserCtxProps } from "../global/context/user-context";
+import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "./firebase/setup";
 import { toast } from "react-toastify";
 import { Formik, Form } from "formik";
-import { LoginSchema } from "./validation/yup-schema";
+import { EmailVerifySchema } from "./validation/yup-schema";
 // COMPONENTS
 import Main from "../layout/main/main";
 import FormSection from "./components/form-section";
 import MainTitle from "../common/titles/main-title";
 import FormControl from "./components/form-control";
-import PageNavigationLink from "./components/page-navigation-link";
 import ButtonSubmit from "./components/button-submit";
 // END OF IMPORTS
 
-const LoginPage = () => {
+const ForgotPasswordPage = () => {
   // formik
-  const initialValues = { email: "", password: "" };
+  const initialValues = { email: "" };
+  // instructions to Firebase on how to construct the email link
+  const actionCodeSettings = {
+    url: `${import.meta.env.VITE_FORGOT_PASSWORD_REDIRECT_URL}`,
+    handleCodeInApp: true,
+  };
 
   return (
     <Main>
       {/* Logic for form submission start */}
       <Formik
         initialValues={initialValues}
-        validationSchema={LoginSchema}
+        validationSchema={EmailVerifySchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(false);
+          console.log(values);
           try {
-            await signInWithEmailAndPassword(
+            await sendPasswordResetEmail(
               auth,
               values.email,
-              values.password
+              actionCodeSettings
             );
+            toast.success(`Email sent to: ${values.email}`);
           } catch (error: any) {
             console.log(error);
             toast.error(error.message);
           }
-          resetForm({ values: { email: "", password: "" } });
+          resetForm({ values: { email: "" } });
         }}
       >
         {/* Logic for form submission end */}
 
         <FormSection>
-          <MainTitle>Log In</MainTitle>
+          <MainTitle>Forgot Password</MainTitle>
+          <p className="text-center mb-10">
+            Please enter your email address. And we'll send you a verification
+            email to finish your password reset process.
+          </p>
           <Form className="flex flex-col gap-6">
             {/* Email field start */}
             <FormControl
@@ -51,28 +63,6 @@ const LoginPage = () => {
               placeholder="Enter email"
             />
             {/* Email field end */}
-
-            {/* Password field start */}
-            <FormControl
-              label="Password"
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Enter password"
-            />
-            {/* Password field end */}
-            <div className="flex flex-col gap-y-3">
-              <PageNavigationLink
-                title="Forgot password?"
-                linkTo="/auth/forgot-password"
-                linkTitle="Click here."
-              />
-              <PageNavigationLink
-                title="Don't have an account yet?"
-                linkTo="/auth/create-account"
-                linkTitle="Create one now."
-              />
-            </div>
             <ButtonSubmit />
           </Form>
         </FormSection>
@@ -81,4 +71,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default ForgotPasswordPage;

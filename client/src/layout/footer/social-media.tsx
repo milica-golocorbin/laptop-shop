@@ -1,9 +1,11 @@
+// COMPONENTS
 import { RiInstagramFill } from "react-icons/ri";
 import { RiGithubFill } from "react-icons/ri";
 import { RiLinkedinBoxFill } from "react-icons/ri";
 import { RiTwitterFill } from "react-icons/ri";
 import { RiYoutubeFill } from "react-icons/ri";
 import { FaDev } from "react-icons/fa";
+// END OF IMPORTS
 
 const SocialMedia = () => {
   return (

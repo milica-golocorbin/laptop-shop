@@ -1,8 +1,15 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext, UserCtxProps } from "../../global/context/user-context";
+// COMPONENTS
+import AuthLinks from "./links-for-auth/auth-links";
+import Dropdown from "./authenticated-user/dropdown";
 import { RiHomeSmileFill } from "react-icons/ri";
-import AuthenticatedUserDropdown from "./authenticated-user/auth-user-dropdown";
+// END OF IMPORTS
 
 const Header = () => {
+  // react-query-firebase global state
+  const { user } = useContext(UserContext) as UserCtxProps;
   return (
     <header className="w-full h-20 bg-slate-900 text-white text-xs font-semibold text-center uppercase tracking-wide leading-normal">
       <section className="w-11/12 max-w-screen-2xl h-full mx-auto flex justify-between items-center">
@@ -12,15 +19,11 @@ const Header = () => {
           </Link>
         </div>
         <nav>
-          {/* <AuthenticatedUserDropdown /> */}
-          <ul className="flex gap-5">
-            <li>
-              <Link to="/auth/login">login</Link>
-            </li>
-            <li>
-              <Link to="/auth/create-account">sign up</Link>
-            </li>
-          </ul>
+          {user.data === undefined || user.data === null ? (
+            <AuthLinks />
+          ) : (
+            <Dropdown />
+          )}
         </nav>
       </section>
     </header>

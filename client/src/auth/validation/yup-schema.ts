@@ -1,5 +1,6 @@
 // FORM VALIDATION SCHEMAS
 import * as Yup from "yup";
+
 // create account validation schema
 const CreateAccountSchema = Yup.object({
   firstName: Yup.string()
@@ -30,8 +31,8 @@ const LoginSchema = Yup.object({
   password: Yup.string().trim().required("Password is required"),
 });
 
-// forgot password validation schema
-const ForgotPasswordSchema = Yup.object({
+// email verify validation schema
+const EmailVerifySchema = Yup.object({
   email: Yup.string()
     .trim()
     .email("Please provide valid email address")
@@ -63,10 +64,11 @@ const UpdateUserSchema = Yup.object({
     .min(4, "Last Name must be at least 4 characters")
     .notRequired(),
 });
+
 export {
   CreateAccountSchema,
   LoginSchema,
-  ForgotPasswordSchema,
+  EmailVerifySchema,
   ResetPasswordSchema,
   UpdateUserSchema,
 };

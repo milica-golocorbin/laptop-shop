@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
 import { Link } from "react-router-dom";
+// END OF IMPORTS
 
 type Props = {
-  children: ReactNode;
+  children: React.ReactNode;
   route: string;
   onClick?: () => void;
 };

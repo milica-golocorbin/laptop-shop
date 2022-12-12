@@ -1,4 +1,6 @@
+// COMPONENTS
 import SocialMedia from "./social-media";
+// END OF IMPORTS
 
 const Footer = () => {
   return (

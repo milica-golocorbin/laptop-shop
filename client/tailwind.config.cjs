@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        sans: ["League Spartan", ...defaultTheme.fontFamily.sans],
       },
     },
     screens: {
@@ -22,5 +22,15 @@ module.exports = {
       "4xl": "1536px",
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addBase }) {
+      addBase({
+        "@font-face": {
+          fontFamily: "League Spartan",
+          fontWheight: "400",
+          src: "url(/fonts/league-spartan-v6-latin-regular.ttf)",
+        },
+      });
+    }),
+  ],
 };

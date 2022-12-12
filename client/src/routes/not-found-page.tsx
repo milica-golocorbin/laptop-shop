@@ -1,7 +1,9 @@
-import Main from "../common/layout/main/main";
+// COMPONENTS
+import Main from "../layout/main/main";
+import MainSection from "../layout/main/main-section";
 import MainTitle from "../common/titles/main-title";
 import MainButton from "../common/buttons/main-button";
-import MainSection from "../common/layout/main/main-section";
+// END OF IMPORTS
 
 const NotFoundPage = () => {
   return (
